@@ -1,0 +1,81 @@
+.right {
+    position: absolute;
+    right: 150px;
+    top: 7px;
+}
+.center{
+	position: absolute;
+    right: 40%;
+}
+.errors{
+	float:left;
+	color:red;
+	text-align:left;
+}
+
+.table.table-hover, .title {
+	color:white;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.table.table-hover{
+	width:50%;
+	margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+	
+}
+.modal-backdrop {
+   background-color: red;
+}
+.modal{
+	background-image:blue;
+}
+input, button{
+	border-radius:3px;
+	
+}
+.manage{
+	color:gold;
+}
+.manage:hover{
+	color:blue;
+	text-decoration: underline;
+}
+
+table tr td, table tr th, .navbar{
+    background-color: rgba( 20, 20, 20, .8) !important;
+    color:green;
+}
+div.search{
+	width: 90%;
+}
+.power { 
+  background: url("../images/PowerImage.jpeg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.hero { 
+  background: url("../images/HerosImage.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.team { 
+  background: url("../images/team.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.home{
+	background-color:red;
+}

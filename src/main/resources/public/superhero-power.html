@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Powers</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+<script src="js/power.js"></script>
+  <script src="js/toastr.min.js"></script>
+          <link href="css/toastr.css" rel="stylesheet"/>
+  
+
+</head>
+<body class="power">
+	<nav class="navbar navbar-inverse">
+  		<div class="container-fluid">
+   		 <div class="navbar-header">
+     		 <a class="navbar-brand" href="#">SuperHero Team Tracker</a>
+    		</div>
+    	    <div >
+     		 <ul class="nav navbar-nav">
+      		 	 <li><a href="/">Home</a></li>
+       			 <li><a href="/hero">Heros</a></li>
+        		<li class="active"><a href="/power">Powers</a></li>
+        		<li><a href="/team">Teams</a></li>
+        		
+      		</ul>
+       </div>
+  	</div>
+  	<div class="search">
+  	<span><strong>Search Powers:</strong></span>
+  	<input id="search"/>
+  	<span><em>Search must contain all keywords</em></span><input class="all" type="checkbox" value="meet all criteria">
+  	<button id="searchSubmit">Search</button>
+  	<button id="clearSearch">Clear</button>
+  	</div>
+</nav>
+	
+    <div class="dropdown right">
+ 
+    <h4 class="manage dropdown-toggle" type="button" data-toggle="dropdown">Manage Powers &#9660</h4>
+  
+    <ul class="dropdown-menu">
+      <li data-toggle="modal" data-target="#createModal">Create a New Power</li>
+      <li data-toggle="modal" data-target="#deleteModal">Delete an Existing Power</li>
+   	  <li data-toggle="modal" data-target="#updateModal">Update an Existing Power</li>
+    </ul>
+  </div>
+
+ 	<div>
+	<h1 class="title">Current Powers</h1>
+     <table align="center" class="table table-hover">
+     	<thead>
+          <tr>
+               <th>Power ID</th>
+               <th>Power Name</th>
+               <th>Power Type</th>
+               <th>PowerDescription</th>
+          </tr>
+         </thead>
+          <tbody id="result"></tbody>
+     </table>
+    </div>
+    
+
+<!-- Modal CREATE -->
+<div id="createModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Make a New Power</h2>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+
+          <div>
+               <label for="name">name</label>
+               <input id="name" type="text" value="" />
+          </div>
+          <div>
+               <label for="description">Description</label>
+               <input id="description" type="text" value="" />
+          </div>
+          <div>
+
+               <label for="powertype">PowerType:</label>
+               <select id="powertypes1">
+                   
+               </select>
+          </div>
+          <div>
+               <button id="createpower" type="button">Submit</button>
+          </div>
+     </div>
+      </div>
+      <div class="modal-footer">
+        <div class="errors"></div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal DELETE -->
+<div id="deleteModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h1 class="modal-title">Remove an Existing Power</h1>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div id="errorMsgs" class="error"></div>
+
+          <select id="removepower">
+               <option>Select a Power</option>
+          </select>
+          <button id="removeBtn" type="button">Remove</button>
+     </div>
+      </div>
+      <div class="modal-footer">
+        <div class="errors"></div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal UPDATE -->
+<div id="updateModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h1 class="modal-title">Change an Existing Power</h1>
+      </div>
+      <div class="modal-body">
+	     <div class="container">
+
+          <div id="errorMsgs" class="error"></div>
+
+          <div>
+               <select id="powers">
+                    <option>Select a Power</option>
+               </select>
+          </div>
+          <div>
+               <div>
+                    <label for="powerId">Power Id</label>
+                    <input id="powerId" type="text"  readonly value="" />
+               </div>
+               <div>
+                    <label for="name">Name</label>
+                    <input id="updatename" type="text" value="" />
+               </div>
+               <div>
+                    <label for="description">Description</label>
+                    <input id="updatedescription" type="text" value="" />
+               </div>
+               <div>
+                    <label for="active">Power Type:</label>
+                    <select id="powertypes2">
+                         
+                    </select>
+               </div>
+               <div>
+
+
+                    <button id="updatepower" type="button">Submit</button>
+               </div>
+          </div>
+     </div>
+    </div>
+      <div class="modal-footer">
+        <div class="errors"></div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    </div>
+    </div>
+
+<!-- Modal SEARCH -->
+<div id="searchModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h1 class="modal-title">Search from Existing Powers</h1>
+      </div>
+      <div class="modal-body">
+	     <div class="container">
+
+               <div>
+                    <label for="name">Name</label>
+                    <input id="searchname" type="text" value="" />
+               </div>
+               <div>
+                    <label for="description">Description</label>
+                    <input id="searchdescription" type="text" value="" />
+               </div>
+               <div>
+                    <label for="active">Power Type:</label>
+                    <select id="searchpowertype">
+                         
+                    </select>
+               </div>
+               <div>
+
+
+                    <button id="searchpower" type="button">Submit</button>
+               </div>
+          </div>
+     </div>
+      <div class="modal-footer">
+        <div class="errors"></div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+</div>
+</div>
+
+     
+</body>
+</html>

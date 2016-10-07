@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Teams</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+<script src="js/team.js"></script>
+
+</head>
+<body class='team'>
+	<nav class="navbar navbar-inverse">
+  		<div class="container-fluid">
+   		 <div class="navbar-header">
+     		 <a class="navbar-brand" href="#">SuperHero Team Tracker</a>
+    		</div>
+    	    <div >
+     		 <ul class="nav navbar-nav">
+      		 	 <li class="active"><a href="/">Home</a></li>
+       			 <li><a href="/hero">Heros</a></li>
+        		<li><a href="/power">Powers</a></li>
+        		<li><a href="/team">Teams</a></li>
+        		
+      		</ul>
+       </div>
+  	</div>
+  	<div class="search">
+  		<span><strong>Search Powers:</strong></span>
+  		<input id="search"/>
+  		<span><em>Search must contain all keywords</em></span><input class="all" type="checkbox" value="meet all criteria">
+  		<button id="searchSubmit">Search</button>
+  		<button id="clearSearch">Clear</button>
+  	</div>
+</nav>
+	
+    <div class="dropdown right">
+		<h4 class="manage dropdown-toggle" type="button" data-toggle="dropdown">Manage Powers &#9660</h4>
+	    <ul class="dropdown-menu">
+	      <li data-toggle="modal" data-target="#createModal">Create a New Team</li>
+	      <li data-toggle="modal" data-target="#deleteModal">Delete an Existing Team</li>
+	   	  <li data-toggle="modal" data-target="#updateModal">Update an Existing Team</li>
+	    </ul>
+	</div>
+
+ 	<div>
+	 <h1 class="title">Current Superhero Teams</h1>
+
+     <table align="center" class="table table-hover">
+     	<thead>
+          <tr>
+               <th>Team ID</th>
+               <th>Team Name</th>
+               <th>Headquarters</th>
+               <th>Public Support Level</th>
+               <th>Leader</th>
+               <th>Members</th>
+          </tr>
+          <tbody id="result"></tbody>
+     </table>
+    </div>
+    
+
+<!-- Modal CREATE -->
+<div id="createModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Make a New Superhero Team</h2>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+
+          <div>
+               <label for="name">Team Name</label>
+               <input id="name" type="text" value="" />
+          </div>
+          <div>
+               <label for="headquarters">Team Headquarters</label>
+               <input id="headquarters" type="text" value="" />
+          </div>
+          <div>
+               <label for="publicsupportlevel">Public Support Level</label>
+               <input id="publicsupportlevel" type="text" value="" />
+          </div>
+          <div>
+          		<button id="addhero" type="button">Another Hero</button><br/>
+          	<div class="powers">
+               <label for="teammembers">Team Members</label>
+ 				<select class="heros1">
+                   
+               </select>
+            </div>
+          </div>
+          <br/>
+          <div>
+          <div>
+               <label for="leader">Team Leader</label>
+               <select id="heros2">
+                   
+               </select>
+          </div>
+               <button id="createteam" type="button">Submit</button>
+          </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+             <div class="errors"></div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal DELETE -->
+<div id="deleteModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h1 class="modal-title">Remove an Existing Superhero Team</h1>
+      </div>
+      <div class="modal-body">
+       <div class="container">
+          <div id="errorMsgs" class="error"></div>
+
+          <select id="teams1">
+               <option>Select a Team</option>
+          </select>
+          <button id="removeBtn" type="button">Remove</button>
+     </div>
+      </div>
+      <div class="modal-footer">
+       <div class="errors"></div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal UPDATE -->
+<div id="updateModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h1 class="modal-title">Change an Existing Team</h1>
+      </div>
+      <div class="modal-body">
+	   <div class="container">
+
+          <div id="errorMsgs" class="error"></div>
+
+          <div>
+               <select id="teams2">
+                    <option>Select a Team</option>
+               </select>
+          </div>
+          <div>
+                <label for="teamid">Team ID</label>
+                <input id="teamid" type="text"  readonly value="" />
+            </div>
+            <div>
+               <label for="name">Team Name</label>
+               <input id="nameupdate" type="text" value="" />
+          </div>
+          <div>
+               <label for="headquarters">Headquarters</label>
+               <input id="headquartersupdate" type="text" value="" />
+          </div>
+          <div>
+               <label for="publicsupportlevel">Public Support Level</label>
+               <input id="publicsupportlevelupdate" type="text" value="" />
+          </div>
+           <div>
+          		<button id="addheroupdate" type="button">Another Hero</button><br/>
+          	<div class="powers">
+               <label for="teammembers">Team Members</label>
+ 				<select class="heros3">
+                   
+               </select>
+            </div>
+          </div>
+          <div>
+               <label for="leader">Team Leader</label>
+               <select id="heros4">
+                   
+               </select>
+          </div>
+          
+          <button id="updateteam" type="button">Submit</button>
+               </div>
+          </div>
+     
+      <div class="modal-footer">
+             <div class="errors"></div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+</div>
+</div>
+
+     
+</body>
+</html>

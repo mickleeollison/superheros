@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Superheros</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+<script src="js/hero.js"></script>
+
+</head>
+<body class="hero">
+	<nav class="navbar navbar-inverse">
+  		<div class="container-fluid">
+   		 <div class="navbar-header">
+     		 <a class="navbar-brand" href="#">SuperHero Team Tracker</a>
+    		</div>
+    	    <div >
+     		 <ul class="nav navbar-nav">
+      		 	 <li><a href="/">Home</a></li>
+       			 <li class="active"><a href="/hero">Heros</a></li>
+        		<li><a href="/power">Powers</a></li>
+        		<li><a href="/team">Teams</a></li>
+        		
+      		</ul>
+       </div>
+  	</div>
+  	<div class="search">
+  	<span><strong>Search Heros:</strong></span>
+  	<input id="search"/>
+  	<span><em>Search must contain all keywords</em></span><input class="all" type="checkbox" value="meet all criteria">
+  	<button id="searchSubmit">Search</button>
+  	<button id="clearSearch">Clear</button>
+  	</div>
+</nav>
+	
+    <div class="dropdown right">
+    <h4 class="manage dropdown-toggle" type="button" data-toggle="dropdown">Manage Heros &#9660</h4>
+    <ul class="dropdown-menu">
+      <li data-toggle="modal" data-target="#createModal">Create a New Hero</li>
+      <li data-toggle="modal" data-target="#deleteModal">Delete an Existing Hero</li>
+   	  <li data-toggle="modal" data-target="#updateModal">Update an Existing Hero</li>
+    </ul>
+  </div>
+
+ 	<div>
+	 <h1 class="title">Current Superheros</h1>
+     <table align="center" class="table table-hover">
+     	<thead>
+          <tr>
+               <th>Hero ID</th>
+               <th>Name</th>
+               <th>Alias</th>
+               <th>Origin Type</th>
+               <th>Height (inches)</th>
+               <th>Weight (lbs)</th>
+               <th>Powers</th>
+               <th>Costume Image</th>
+          </tr>
+          </thead>
+          <tbody id="result"></tbody>
+     </table>
+    </div>
+    
+
+<!-- Modal CREATE -->
+<div id="createModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Make a New Superhero</h2>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+
+           <div>
+               <label for="mutantname">Name</label>
+               <input id="mutantname" type="text" value="" />
+          </div>
+          <div>
+               <label for="heroname">Alias</label>
+               <input id="heroname" type="text" value="" />
+          </div>
+          <div>
+               <label for="origintype">Origin Type</label>
+               <input id="origintype" type="text" value="" />
+          </div>
+          <div>
+               <label for="height">Height</label>
+               <input type="number" id="height"  value="" />
+          </div>
+          <div>
+               <label for="weight">Weight</label>
+               <input type="number" id="weight"  value="" />
+          </div>
+          <div>
+               <label for="costumeimage">Costume Image (image address)</label>
+               <input type="text" id="costumeimage"  value="" />
+          </div>
+          <div>
+          
+			<button id="addpower" type="button">Another Power</button><br/>
+			<div class="powers">
+               <label for="powers">Power:</label>
+               <select class="powers1">
+                   
+               </select>
+             </div>
+          </div>
+          <div>
+          </div>
+      </div>
+      </div>
+               <button id="createhero" type="button">Create</button>
+      
+      <div class="modal-footer">
+        <div class="errors"></div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal DELETE -->
+<div id="deleteModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h1 class="modal-title">Remove an Existing Superhero</h1>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div id="errorMsgs" class="error"></div>
+
+          <select id="removehero">
+               <option>Select a Hero</option>
+          </select>
+          <button id="removeBtn" type="button">Remove</button>
+     </div>
+      </div>
+      <div class="modal-footer">
+        <div class="errors"></div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal UPDATE -->
+<div id="updateModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h1 class="modal-title">Modify an Existing Superhero</h1>
+      </div>
+      <div class="modal-body">
+	     <div class="container">
+
+          <div id="errorMsgs" class="error"></div>
+
+          <div>
+               <select id="heros">
+                    <option>Select a Hero</option>
+               </select>
+          </div>
+          <div>
+                <label for="heroID">Hero Id</label>
+                <input id="heroid" type="text"  readonly value="" />
+            </div>
+            <div>
+               <label for="heroname">Name</label>
+               <input id="heronameupdate" type="text" value="" />
+          </div>
+          <div>
+               <label for="mutantname">Alias</label>
+               <input id="mutantnameupdate" type="text" value="" />
+          </div>
+          <div>
+               <label for="origintype">Origin Type</label>
+               <input id="origintypeupdate" type="text" value="" />
+          </div>
+          <div>
+               <label for="height">Height (inches)</label>
+               <input type="number" id="heightupdate"  value="" />
+          </div>
+          <div>
+               <label for="weight">Weight (lbs)</label>
+               <input type="number" id="weightupdate"  value="" />
+          </div>
+          <div>
+               <label for="costumeimage">Costume Image (image address)</label>
+               <input type="text" id="costumeimageupdate"  value="" />
+          </div>
+          <div>
+
+              <button id="addpowerupdate" type="button">Another Power</button><br/>
+               <label for="powers">Power:</label>
+               <select class="powers2">
+                   
+               </select>
+          </div>                   
+         </div>
+         <button id="updatehero" type="button">update</button>
+     </div>
+      <div class="modal-footer">
+        <div class="errors"></div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+
+     
+</body>
+</html>
