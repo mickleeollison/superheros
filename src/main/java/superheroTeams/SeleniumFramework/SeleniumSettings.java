@@ -1,4 +1,4 @@
-package supeheroTeams.SeleniumFramework;
+package superheroTeams.SeleniumFramework;
 
 import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.WebDriver;

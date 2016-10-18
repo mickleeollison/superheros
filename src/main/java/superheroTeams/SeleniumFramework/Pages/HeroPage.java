@@ -2,7 +2,7 @@ package superheroTeams.SeleniumFramework.Pages;
 
 import org.openqa.selenium.WebDriver;
 
-import supeheroTeams.SeleniumFramework.PageObject;
+import superheroTeams.SeleniumFramework.PageObject;
 
 public class HeroPage extends PageObject {
     public HeroPage(WebDriver driver) {
